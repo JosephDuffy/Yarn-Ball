@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Yarn Ball",
+  "author": "Joseph Duffy",
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "background.js"
+      ],
+      "run_at": "document_end"
+    }
+  ]
+}
