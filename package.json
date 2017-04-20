@@ -6,7 +6,7 @@
     "start": "webpack --progress --colors --watch",
     "build": "webpack -p --devtool source-map",
     "build:debug": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers js:babel-core/register tests/**/*.js"
   },
   "author": "Joseph Duffy",
   "license": "MIT",
@@ -15,6 +15,8 @@
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.1",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
     "webpack": "^2.4.1",
     "webpack-cleanup-plugin": "^0.5.1"
   },
