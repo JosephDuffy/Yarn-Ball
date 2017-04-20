@@ -1,8 +1,9 @@
 "use strict";
 
 import isValidPackageName from "validate-npm-package-name";
+import escapeStringRegexp from "escape-string-regexp";
 
-const commandParametersRegex = `((?:(?:\\ [^\\s]+))+)`;
+const commandParametersRegex = `((?:(?:\\ [^\\ ]+))*)`;
 
 function applyFunctionToChildren(node, func) {
     for (let child of node.childNodes) {
@@ -14,25 +15,23 @@ function applyFunctionToChildren(node, func) {
     }
 };
 
-applyFunctionToChildren(document.body, (node) => {
-    if (node.nodeType === Node.ELEMENT_NODE) {
-        if (node.nodeName === "INPUT") {
-            if (node.type === "text" && node.readOnly) {
-                node.value = replaceInstallCommands(node.value);
+document.addEventListener("DOMContentLoaded", (event) => {
+    applyFunctionToChildren(document.body, (node) => {
+        if (node.nodeType === Node.ELEMENT_NODE) {
+            if (node.nodeName === "INPUT") {
+                if (node.type === "text" && node.readOnly) {
+                    node.value = replaceInstallCommands(node.value);
+                }
+            } else if (node.nodeName !== "TEXTFIELD" && node.innerText) {
+                node.innerText = replaceInstallCommands(node.innerText);
             }
-        } else if (node.nodeName !== "TEXTFIELD" && node.innerText) {
-            node.innerText = replaceInstallCommands(node.innerText);
+        } else if (node.nodeType === Node.TEXT_NODE && node.parentNode.nodeName !== "TEXTAREA") {
+            node.nodeValue = replaceInstallCommands(node.nodeValue);
         }
-    } else if (node.nodeType === Node.TEXT_NODE && node.parentNode.nodeName !== "TEXTAREA") {
-        node.nodeValue = replaceInstallCommands(node.nodeValue);
-    }
+    });
 });
 
 function replaceInstallCommands(text) {
-    if (text === undefined) {
-        return text;
-    }
-
     let installRegex = new RegExp(`(npm\ i(?:nstall)?)${commandParametersRegex}`);
     
     let match = text.match(installRegex);
@@ -68,15 +67,21 @@ function replaceInstallCommands(text) {
             parsedCommand += " " + parameter;
         }
 
-        if (packages.length === 0) {
-            // TODO: Add to ignore list
-            match = null;
+        let yarnCommand;
+
+        if (packages.length === 0 && flags.length > 0) {
+            const escapedMatch = escapeStringRegexp(match[0]);
+            installRegex = new RegExp(`(?!${escapedMatch})${installRegex.source}`, installRegex.flags);
+            match = text.match(installRegex);
             continue;
+        } else if (packages.length === 0) {
+            yarnCommand = `yarn install`;
+        } else {
+            const flagsString = flags.reduce((previousValue, currentValue) => `${previousValue} ${currentValue}`, "");
+            const packagesString = packages.reduce((previousValue, currentValue) => `${previousValue} ${currentValue}`, "");
+            yarnCommand = `yarn${isGlobalCommand ? " global": ""} add${flagsString}${packagesString}`;
         }
 
-        const flagsString = flags.reduce((previousValue, currentValue) => `${previousValue} ${currentValue}`, "");
-        const packagesString = packages.reduce((previousValue, currentValue) => `${previousValue} ${currentValue}`, "");
-        const yarnCommand = `yarn${isGlobalCommand ? " global": ""} add${flagsString}${packagesString}`;
 
         text = text.replace(parsedCommand, yarnCommand);
 
@@ -85,5 +90,3 @@ function replaceInstallCommands(text) {
 
     return text;
 }
-
-replaceInstallCommands();

@@ -19,6 +19,7 @@
     "webpack-cleanup-plugin": "^0.5.1"
   },
   "dependencies": {
+    "escape-string-regexp": "^1.0.5",
     "validate-npm-package-name": "^3.0.0"
   }
 }
