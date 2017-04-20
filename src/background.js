@@ -26,8 +26,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 node.innerText = substituter.replaceAllCommands(node.innerText);
             }
         } else if (node.nodeType === Node.TEXT_NODE && node.parentNode.nodeName !== "TEXTAREA") {
-            if (node.parentNode.nodeName == "PRE") {
-            }
             node.nodeValue = substituter.replaceAllCommands(node.nodeValue);
         }
     });
