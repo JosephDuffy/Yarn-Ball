@@ -417,5 +417,49 @@ describe("Substituter", () => {
         });
     });
 
+    describe("#replaceRebuildCommands()", () => {
+
+        function checkMappings(inputMappings) {
+            for (let input in inputMappings) {
+                const expectedOutput = inputMappings[input];
+                const output = substituter.replaceRebuildCommands(input);
+                expect(output).to.equal(expectedOutput);
+            }
+        }
+
+        it("should substitute npm rebuild commands", () => {
+            const inputMappings = {
+                "npm rebuild": "yarn install --force",
+                "test test npm rebuild": "test test yarn install --force",
+                "npm rebuild test test": "yarn install --force test test",
+                "test test npm rebuild test test": "test test yarn install --force test test",
+            }
+
+            checkMappings(inputMappings);
+        });
+    });
+
+    describe("#replaceCacheCleanCommands()", () => {
+
+        function checkMappings(inputMappings) {
+            for (let input in inputMappings) {
+                const expectedOutput = inputMappings[input];
+                const output = substituter.replaceCacheCleanCommands(input);
+                expect(output).to.equal(expectedOutput);
+            }
+        }
+
+        it("should substitute npm cache clean commands", () => {
+            const inputMappings = {
+                "npm cache clean": "yarn cache clean",
+                "test test npm cache clean": "test test yarn cache clean",
+                "npm cache clean test test": "yarn cache clean test test",
+                "test test npm cache clean test test": "test test yarn cache clean test test",
+            }
+
+            checkMappings(inputMappings);
+        });
+    });
+
 });
 

@@ -11,6 +11,8 @@ export default class Substituter {
         text = this.replaceInstallCommands(text);
         text = this.replaceConfigCommands(text);
         text = this.replaceLinkCommands(text);
+        text = this.replaceRebuildCommands(text);
+        text = this.replaceCacheCleanCommands(text);
         return text;
     }
 
@@ -93,9 +95,31 @@ export default class Substituter {
         return this.replaceUsingMappings(text, mappings);
     }
 
-    replaceUsingMappings(text, mappings, flagMappings = {}) {
-        for (let yarnCommandName in mappings) {
-            const { regex: npmRegex, supportsGlobal = false, maxParameters = -1, minParameters = 0, parameterValidator = null } = mappings[yarnCommandName];
+    replaceRebuildCommands(text) {
+        const mappings = {
+            "install --force": {
+                "regex": /rebuild/,
+                "parameterValidator": this.validatePackageName
+            }
+        }
+
+        return this.replaceUsingMappings(text, mappings);
+    }
+
+    replaceCacheCleanCommands(text) {
+        const mappings = {
+            "cache clean": {
+                "regex": /cache clean/,
+                "parameterValidator": this.validatePackageName
+            }
+        }
+
+        return this.replaceUsingMappings(text, mappings);
+    }
+
+    replaceUsingMappings(text, commandMappings, flagMappings = {}) {
+        for (let yarnCommandName in commandMappings) {
+            const { regex: npmRegex, supportsGlobal = false, maxParameters = -1, minParameters = 0, parameterValidator = null } = commandMappings[yarnCommandName];
             const supportsParameters = maxParameters != 0
 
             let ignoredStrings = [];
