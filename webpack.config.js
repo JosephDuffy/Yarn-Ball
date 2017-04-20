@@ -12,6 +12,7 @@ module.exports = {
     path: path.join(__dirname, "build"),
     filename: "[name].js"
   },
+  devtool: "eval-source-map",
   module: {
     loaders: [
       {
@@ -22,7 +23,7 @@ module.exports = {
     ]
   },
   plugins: [
-    // new WebpackCleanupPlugin(),
+    new WebpackCleanupPlugin(),
     new GenerateManifestPlugin()
   ]
 };

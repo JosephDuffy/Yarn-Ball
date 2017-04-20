@@ -4,7 +4,7 @@
   "description": "Replace npm commands on web pages with their yarn equivalent",
   "scripts": {
     "start": "webpack --progress --colors --watch",
-    "build": "webpack -p",
+    "build": "webpack -p --devtool source-map",
     "build:debug": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,7 +14,6 @@
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "webpack": "^2.4.1",
     "webpack-cleanup-plugin": "^0.5.1"
