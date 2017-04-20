@@ -8,9 +8,9 @@ const commandParametersRegex = /((?:(?: [^ \.\"\']+))*)/;
 export default class Substituter {
 
     replaceAllCommands(text) {
-        text = replaceInstallCommands(text);
-        text = replaceConfigCommands(text);
-        text = replaceLinkCommands(text);
+        text = this.replaceInstallCommands(text);
+        text = this.replaceConfigCommands(text);
+        text = this.replaceLinkCommands(text);
         return text;
     }
 
