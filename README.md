@@ -1,5 +1,8 @@
 # Yarn Ball
-[![David dependencies](https://img.shields.io/david/josephduffy/yarn-ball.svg)]()
+
+[![Build Status](https://travis-ci.org/JosephDuffy/Yarn-Ball.svg)](https://travis-ci.org/JosephDuffy/Yarn-Ball)
+[![David dependencies](https://david-dm.org/JosephDuffy/yarn-ball.svg)](https://david-dm.org/JosephDuffy/yarn-ball)
+[![Known Vulnerabilities](https://snyk.io/test/github/josephduffy/rewire-server/yarn-ball.svg)](https://snyk.io/test/github/josephduffy/yarn-ball)
 
 Yarn Ball is a Chrome extension that replaces `npm` commands on webpages with their `yarn` equivalents. The replacements are performed as per Yarn's [CLI commands comparison](https://yarnpkg.com/lang/en/docs/migrating-from-npm/#toc-cli-commands-comparison).
 
