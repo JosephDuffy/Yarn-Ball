@@ -16,6 +16,16 @@ describe("Substituter", () => {
             }
         }
 
+        // Init
+
+        it("should not substitute npm init commands", () => {
+            const inputMappings = {
+                "npm init": "npm init"
+            }
+
+            checkMappings(inputMappings);
+        });
+
         // Install
 
         it("should substitute npm install commands without packages", () => {
@@ -36,6 +46,29 @@ describe("Substituter", () => {
                 "foobar npm install package-name second-name-2": "foobar yarn add package-name second-name-2",
                 "foobar npm install package-name second-name-2. another-package-name": "foobar yarn add package-name second-name-2. another-package-name",
                 "npm install package-name second-name-2. another-package-name": "yarn add package-name second-name-2. another-package-name"
+            }
+
+            checkMappings(inputMappings);
+        });
+
+        it("should substitute npm i commands without packages", () => {
+            const inputMappings = {
+                "npm i": "yarn install",
+                "foobar npm i": "foobar yarn install",
+                "foobar npm i. another-package-name": "foobar yarn install. another-package-name",
+                "npm i. another-package-name": "yarn install. another-package-name"
+            }
+
+            checkMappings(inputMappings);
+        });
+
+        it("should substitute npm i commands with 1 or more packages", () => {
+            const inputMappings = {
+                "npm i package-name": "yarn add package-name",
+                "npm i package-name second-name-2": "yarn add package-name second-name-2",
+                "foobar npm i package-name second-name-2": "foobar yarn add package-name second-name-2",
+                "foobar npm i package-name second-name-2. another-package-name": "foobar yarn add package-name second-name-2. another-package-name",
+                "npm i package-name second-name-2. another-package-name": "yarn add package-name second-name-2. another-package-name"
             }
 
             checkMappings(inputMappings);

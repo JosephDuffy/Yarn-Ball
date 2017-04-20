@@ -24,7 +24,7 @@ export default class Substituter {
     replaceInstallCommands(text) {
         const mappings = {
             "add": {
-                "regex": /i(?!nit)(?:nstall)/,
+                "regex": /i(?!nit)(?:nstall)?/,
                 "supportsGlobal": true,
                 "minParameters": 1,
                 "parameterValidator": this.validatePackageName
@@ -47,7 +47,7 @@ export default class Substituter {
         text = this.replaceUsingMappings(text, mappings, flagMappings, true);
         text = this.replaceUsingMappings(text, {
             "install": {
-                "regex": /i(?!nit)(?:nstall)/,
+                "regex": /i(?!nit)(?:nstall)?/,
                 "maxParameters": 0
             }
         });
