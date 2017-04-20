@@ -20,15 +20,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
         if (node.nodeType === Node.ELEMENT_NODE) {
             if (node.nodeName === "INPUT") {
                 if (node.type === "text" && node.readOnly) {
-                    node.value = substituter.replaceInstallCommands(node.value);
+                    node.value = substituter.replaceAllCommands(node.value);
                 }
             } else if (node.nodeName !== "TEXTFIELD" && node.innerText) {
-                node.innerText = substituter.replaceInstallCommands(node.innerText);
+                node.innerText = substituter.replaceAllCommands(node.innerText);
             }
         } else if (node.nodeType === Node.TEXT_NODE && node.parentNode.nodeName !== "TEXTAREA") {
             if (node.parentNode.nodeName == "PRE") {
             }
-            node.nodeValue = substituter.replaceInstallCommands(node.nodeValue);
+            node.nodeValue = substituter.replaceAllCommands(node.nodeValue);
         }
     });
 });
