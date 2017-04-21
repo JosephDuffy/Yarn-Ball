@@ -461,5 +461,40 @@ describe("Substituter", () => {
         });
     });
 
+    describe("#replaceUsingMappings()", () => {
+
+        function checkMappings(inputMappings) {
+            for (let input in inputMappings) {
+                const expectedOutput = inputMappings[input];
+                const output = substituter.replaceAllCommands(input);
+                expect(output).to.equal(expectedOutput);
+            }
+        }
+
+        it("should substitute npm commands with non-breaking spaces", () => {
+            expect(substituter.replaceAllCommands("npm install --save package-name")).to.equal("yarn add package-name");
+        });
+
+        it("should substitute npm commands with tabs", () => {
+            expect(substituter.replaceAllCommands("npm	install	--save	package-name")).to.equal("yarn add package-name");
+        });
+
+        it("should substitute npm commands with new lines and a non-replaceable command on the second line", () => {
+            const input = `npm install
+npm test`;
+            const expectedOutput = `yarn install
+npm test`;
+            expect(substituter.replaceAllCommands(input)).to.equal(expectedOutput);
+        });
+
+        it("should substitute npm commands with new lines and a replaceable command on the second line", () => {
+            const input = `npm install
+npm install --save package-name`;
+            const expectedOutput = `yarn install
+yarn add package-name`;
+            expect(substituter.replaceAllCommands(input)).to.equal(expectedOutput);
+        });
+    });
+
 });
 

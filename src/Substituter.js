@@ -1,9 +1,7 @@
 "use strict";
 
 import isValidPackageName from "validate-npm-package-name";
-import escapeStringRegexp from "escape-string-regexp";
-
-const commandParametersRegex = /((?:(?: [^ \.\"\']+))*)/;
+import XRegExp from "xregexp";
 
 export default class Substituter {
 
@@ -63,21 +61,21 @@ export default class Substituter {
         // Docs (https://yarnpkg.com/en/docs/cli/config) say yes, CLI says no
         const mappings = {
             "config set": {
-                "regex": /(?:c(?:onfig)? )?set/,
+                "regex": /(?:c(?:onfig)?[^\S\n\r])?set/,
                 "minParameters": 2
             },
             "config get": {
-                "regex": /(?:c(?:onfig)? )?get/,
+                "regex": /(?:c(?:onfig)?[^\S\n\r])?get/,
                 "minParameters": 1,
                 "maxParameters": 1
             },
             "config delete": {
-                "regex": /c(?:onfig)? delete/,
+                "regex": /c(?:onfig)?[^\S\n\r]delete/,
                 "minParameters": 1,
                 "maxParameters": 1
             },
             "config list": {
-                "regex": /c(?:onfig)? list/,
+                "regex": /c(?:onfig)?[^\S\n\r]list/,
                 "maxParameters": 0
             }
         }
@@ -110,7 +108,7 @@ export default class Substituter {
     replaceCacheCleanCommands(text) {
         const mappings = {
             "cache clean": {
-                "regex": /cache clean/,
+                "regex": /cache[^\S\n\r]clean/,
                 "parameterValidator": this.validatePackageName
             }
         }
@@ -123,59 +121,43 @@ export default class Substituter {
             const { regex: npmRegex, supportsGlobal = false, maxParameters = -1, minParameters = 0, parameterValidator = null } = commandMappings[yarnCommandName];
             const supportsParameters = maxParameters != 0
 
-            let ignoredStrings = [];
-            let match;
+            let regexString = "";
 
-            function performMatch() {
-                let regexString = "";
-
-                if (ignoredStrings.length > 0) {
-                    regexString += "^" + ignoredStrings.map((string) => `(?!${escapeStringRegexp(string)})`);
-                }
-
-                regexString += `(npm ${npmRegex.source})`;
-                if (supportsParameters) {
-                    regexString += /((?:(?: [^ \.\"\']+))*)/.source;
-                }
-                const regex = new RegExp(regexString)
-                match = text.match(regex)
+            regexString += `(npm\[^\\S\\n\\r]${npmRegex.source})`;
+            if (supportsParameters) {
+                regexString += /((?:(?:[^\S\n\r][^\n|\r|\.|"|']+))*)/.source;
             }
 
-            performMatch();
+            const regex = new RegExp(regexString, "g");
 
-            while (match) {
+            XRegExp.forEach(text, regex, (match) => {
                 let flags = [];
                 let parameters = [];
+                let isGlobal = false;
                 let parsedCommand = match[1];
-                let args = (match.length > 2) ? match[2].split(" ").slice(1) : [];
-
-                let yarnCommand = "yarn";
-
-                if (args.includes("-g") || args.includes("--global")) {
-                    if (supportsGlobal) {
-                        yarnCommand += " global";
-                    } else {
-                        throw new Error("A Global flag was found in a command that doesn't have a global equivalent")
-                    }
-                }
-
-                yarnCommand += " " + yarnCommandName;
+                const args = (match.length > 2) ? match[2].match(/\s\S+/g) || [] : [];
 
                 argumentLoop:
                 for (let argument of args) {
-                    if (argument === "-g" || argument === "--global") {
-                        parsedCommand += " " + argument;
+                    const trimmedArgument = argument.trim();
+                    if (trimmedArgument === "-g" || trimmedArgument === "--global") {
+                        if (supportsGlobal) {
+                            isGlobal = true;
+                        } else {
+                            throw new Error("A Global flag was found in a command that doesn't have a global equivalent");
+                        }
+                        parsedCommand += argument;
                         continue;
                     }
 
                     for (let yarnFlag in flagMappings) {
                         const npmFlags = flagMappings[yarnFlag];
 
-                        if (npmFlags.includes(argument)) {
+                        if (npmFlags.includes(trimmedArgument)) {
                             if (yarnFlag !== "") {
                                 flags.push(yarnFlag);
                             }
-                            parsedCommand += " " + argument;
+                            parsedCommand += argument;
                             continue argumentLoop;
                         }
                     }
@@ -183,34 +165,41 @@ export default class Substituter {
                     if (supportsParameters) {
                         if (parameterValidator !== null) {
                             try {
-                                parameterValidator(argument);
+                                parameterValidator(trimmedArgument);
                             } catch(error) {
                                 break argumentLoop;
                             }
                         }
 
-                        parameters.push(argument);
-                        parsedCommand += " " + argument;
+                        parameters.push(trimmedArgument);
+                        parsedCommand += argument;
                         continue;
                     }
 
+                    // End the for-loop on the first invalid argument
                     break;
                 }
 
                 if (parameters.length < minParameters) {
-                    ignoredStrings.push(match[0]);
-                    performMatch();
-                    continue;
-                } else {
-                    const flagsString = flags.reduce((previousValue, currentValue) => `${previousValue} ${currentValue}`, "");
-                    const parametersString = parameters.reduce((previousValue, currentValue) => `${previousValue} ${currentValue}`, "");
-                    yarnCommand += flagsString + parametersString;
+                    return;
                 }
 
-                text = text.replace(parsedCommand, yarnCommand);
+                let yarnCommand = "yarn";
 
-                performMatch();
-            }
+                if (isGlobal) {
+                    yarnCommand += " global";
+                }
+
+                yarnCommand += " " + yarnCommandName;
+
+                const flagsString = flags.reduce((previousValue, currentValue) => `${previousValue} ${currentValue}`, "");
+                const parametersString = parameters.reduce((previousValue, currentValue) => `${previousValue} ${currentValue}`, "");
+
+                yarnCommand += flagsString + parametersString;
+
+                const parsedCommandRegex = new RegExp(`${XRegExp.escape(parsedCommand)}`);
+                text = text.replace(parsedCommandRegex, yarnCommand);
+            });
         }
 
         return text;
