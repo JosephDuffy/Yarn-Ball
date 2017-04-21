@@ -1,7 +1,9 @@
-const webpack = require("webpack");
+"use strict";
+
 const path = require("path");
 const WebpackCleanupPlugin = require("webpack-cleanup-plugin");
 const GenerateManifestPlugin = require("./lib/GenerateManifestPlugin");
+const GenerateSafariPlistPlugin = require("./lib/GenerateSafariPlistPlugin");
 
 module.exports = {
   context: path.join(__dirname, "src"),
@@ -24,6 +26,7 @@ module.exports = {
   },
   plugins: [
     new WebpackCleanupPlugin(),
-    new GenerateManifestPlugin()
+    new GenerateManifestPlugin(),
+    new GenerateSafariPlistPlugin(),
   ]
 };
