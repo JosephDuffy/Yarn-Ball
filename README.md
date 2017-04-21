@@ -8,7 +8,15 @@ Yarn Ball is a Chrome extension that replaces `npm` commands on webpages with th
 
 ## Development
 
-To develop Yarn Ball locally run `npm start`, which will start a `webpack` watcher (note that changes to the manifest.json file will not be automatically recompiled). Compiled files are output to a `build` directory. To load in to Chrome use the "Load unpacked extension" option and choose the `build` directory.
+To develop Yarn Ball locally run `npm start`, which will start a `webpack` watcher (note that changes to the `manifest.json` file will not be automatically recompiled). Compiled files are output to a `build` directory.
+
+### Chrome
+
+To load in to Chrome use the "Load unpacked extension" option and choose the `build` directory.
+
+### Firefox
+
+To load in Firefox navigate to "about:debugging" and select "Load Temporary Add-on" and choose the `manifest.json` file inside the `build` directory.
 
 ## Licence
 
