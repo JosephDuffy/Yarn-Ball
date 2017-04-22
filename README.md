@@ -12,11 +12,15 @@ To develop Yarn Ball locally run `npm start`, which will start a `webpack` watch
 
 ### Chrome
 
-To load in to Chrome use the "Load unpacked extension" option and choose the `build` directory.
+To load in to Chrome use the "Load unpacked extension" option and choose the `build/chrome` directory.
 
 ### Firefox
 
-To load in Firefox navigate to "about:debugging" and select "Load Temporary Add-on" and choose the `manifest.json` file inside the `build` directory.
+To load in Firefox navigate to "about:debugging" and select "Load Temporary Add-on" and choose the `manifest.json` file inside the `build/chrome` directory.
+
+### Safari
+
+To load in Safari open the "Extension Builder" from the "Developer" menu and add the `build/Yarn Ball.safariextension` directory.
 
 ## Feature Roadmap
 
@@ -26,6 +30,10 @@ Down the line I would like to add a configuration page that would provide the fo
  - [ ] Click on a replaced command to copy to the clipboard
  - [ ] Show original command on hover
  - [ ] Ignore `npm install` commands that don't include the save parameter
+
+## Special Thanks
+
+Special thanks to [Joshua Robins](https://joshuarobins3d.com/) for creating the logo for Yarn Ball.
 
 ## Licence
 
