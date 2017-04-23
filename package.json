@@ -1,11 +1,10 @@
 {
   "name": "yarn-ball",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Replace npm commands on web pages with their yarn equivalent",
   "scripts": {
     "start": "webpack --progress --colors --watch",
-    "build": "webpack -p --devtool source-map",
-    "build:debug": "webpack",
+    "build": "webpack --define process.env.NODE_ENV='production'",
     "test": "mocha --compilers js:babel-core/register tests/**/*.js"
   },
   "author": "Joseph Duffy",
