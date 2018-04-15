@@ -1,8 +1,10 @@
 # Yarn Ball
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/JosephDuffy/Yarn-Ball.svg)](https://greenkeeper.io/)
+[![Mozilla Add-on](https://img.shields.io/amo/v/yarn-ball.svg)](https://addons.mozilla.org/it/firefox/addon/yarn-ball/)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/hnoheojfnfoadajfnopmabmpcgmlkmlg.svg)](https://chrome.google.com/webstore/detail/yarn-ball/hnoheojfnfoadajfnopmabmpcgmlkmlg)
 
 [![Build Status](https://travis-ci.org/JosephDuffy/Yarn-Ball.svg)](https://travis-ci.org/JosephDuffy/Yarn-Ball)
+[![Greenkeeper badge](https://badges.greenkeeper.io/JosephDuffy/Yarn-Ball.svg)](https://greenkeeper.io/)
 [![David dependencies](https://david-dm.org/JosephDuffy/yarn-ball.svg)](https://david-dm.org/JosephDuffy/yarn-ball)
 [![Known Vulnerabilities](https://snyk.io/test/github/josephduffy/yarn-ball/badge.svg)](https://snyk.io/test/github/josephduffy/yarn-ball)
 
