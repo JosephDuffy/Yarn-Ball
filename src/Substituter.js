@@ -15,7 +15,7 @@ export default class Substituter {
     }
 
     validatePackageName(packageName) {
-        let splitPackageName = packageName.split("@")[0]
+        let splitPackageName = packageName.split("@")
         let packageNameWithoutVersion = splitPackageName[0] == '' ? '@'+splitPackageName[1] : splitPackageName[0];
 
         if (!isValidPackageName(packageNameWithoutVersion).validForOldPackages) {
