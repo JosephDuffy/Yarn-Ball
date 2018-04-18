@@ -1,6 +1,6 @@
 # Yarn Ball
 
-[![Mozilla Add-on](https://img.shields.io/amo/v/yarn-ball.svg)](https://addons.mozilla.org/it/firefox/addon/yarn-ball/)
+[![Mozilla Add-on](https://img.shields.io/amo/v/yarn-ball.svg)](https://addons.mozilla.org/firefox/addon/yarn-ball/)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/hnoheojfnfoadajfnopmabmpcgmlkmlg.svg)](https://chrome.google.com/webstore/detail/yarn-ball/hnoheojfnfoadajfnopmabmpcgmlkmlg)
 
 [![Build Status](https://travis-ci.org/JosephDuffy/Yarn-Ball.svg)](https://travis-ci.org/JosephDuffy/Yarn-Ball)
@@ -12,7 +12,7 @@ Yarn Ball is a browser extension that replaces [`npm`](https://www.npmjs.com/) c
 
 ## Installation
 
-Yarn Ball will be available via the [Chrome Web Store](https://chrome.google.com/webstore/detail/yarn-ball/hnoheojfnfoadajfnopmabmpcgmlkmlg), [Mozilla Addons](https://addons.mozilla.org/it/firefox/addon/yarn-ball), and the Safari Extensions Gallery. The README will be updated with links as they become available.
+Yarn Ball will be available via the [Chrome Web Store](https://chrome.google.com/webstore/detail/yarn-ball/hnoheojfnfoadajfnopmabmpcgmlkmlg), [Mozilla Addons](https://addons.mozilla.org/firefox/addon/yarn-ball), and the Safari Extensions Gallery. The README will be updated with links as they become available.
 
 ## Development
 
