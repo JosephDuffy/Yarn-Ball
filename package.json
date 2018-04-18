@@ -22,7 +22,7 @@
   "dependencies": {
     "clone": "^2.1.1",
     "copy-webpack-plugin": "^4.0.1",
-    "plist": "^2.0.1",
+    "plist": "^3.0.1",
     "validate-npm-package-name": "^3.0.0",
     "xregexp": "^3.2.0"
   }
