@@ -1,6 +1,6 @@
 "use strict";
 
 module.exports = [
-	require("./webpack.config.chrome"),
-	require("./webpack.config.safari"),
+    require("./webpack.config.WebExtension"),
+    require("./webpack.config.safari"),
 ]

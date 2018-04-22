@@ -16,15 +16,15 @@ Yarn Ball will be available via the [Chrome Web Store](https://chrome.google.com
 
 ## Development
 
-To develop Yarn Ball locally run `npm start`, which will start a `webpack` watcher (note that changes to the `manifest.json` file will not be automatically recompiled). Compiled files are output to a `build` directory.
+To develop Yarn Ball locally run `npm run build:watch`, which will start a `webpack` watcher (note that changes to the `manifest.json` file will not be automatically recompiled). Compiled files are output to a `build` directory.
 
 ### Chrome
 
-To load in to Chrome use the "Load unpacked extension" option and choose the `build/chrome` directory.
+To load in to Chrome use the "Load unpacked extension" option and choose the `build/WebExtension` directory.
 
 ### Firefox
 
-To load in Firefox navigate to "about:debugging" and select "Load Temporary Add-on" and choose the `manifest.json` file inside the `build/chrome` directory.
+To load in Firefox navigate to "about:debugging" and select "Load Temporary Add-on" and choose the `manifest.json` file inside the `build/WebExtension` directory.
 
 ### Safari
 
