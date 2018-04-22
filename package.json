@@ -3,27 +3,92 @@
   "version": "1.0.1",
   "description": "Replace npm commands on web pages with their yarn equivalent",
   "scripts": {
-    "start": "webpack --progress --colors --watch",
-    "build": "webpack --define process.env.NODE_ENV='production'",
-    "test": "mocha --compilers js:babel-core/register tests/**/*.js"
+    "build": "webpack-cli -p --devtool none",
+    "build:watch": "webpack-cli --progress --colors --watch --mode development",
+    "test": "jest",
+    "test:watch": "npm run test -- --watch",
+    "test:watchAll": "npm run test -- --watchAll",
+    "test:coverage": "npm run test -- --coverage",
+    "coveralls": "npm run test:coverage; cat ./coverage/lcov.info | coveralls",
+    "lint": "tslint 'src/**/*.ts' --exclude 'src/**/*.d.ts' --exclude 'src/**/__tests__/*.ts' --project ./tsconfig.json",
+    "lint:fix": "npm run lint -- --fix",
+    "pretty": "prettier --write 'src/**/*.ts'"
   },
   "author": "Joseph Duffy",
   "license": "MIT",
-  "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.24.1",
-    "babel-loader": "^7.0.0",
-    "babel-preset-es2015": "^6.24.1",
-    "chai": "^3.5.0",
-    "mocha": "^5.1.0",
-    "webpack": "^2.4.1",
-    "webpack-cleanup-plugin": "^0.5.1"
-  },
   "dependencies": {
-    "clone": "^2.1.1",
-    "copy-webpack-plugin": "^4.0.1",
-    "plist": "^2.0.1",
     "validate-npm-package-name": "^3.0.0",
-    "xregexp": "^3.2.0"
+    "xregexp": "^4.1.1"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.64",
+    "@types/jest": "^22.2.3",
+    "@types/xregexp": "^3.0.29",
+    "clean-webpack-plugin": "^0.1.19",
+    "clone": "^1.0.4",
+    "copy-webpack-plugin": "^4.5.1",
+    "coveralls": "^3.0.0",
+    "husky": "^0.14.3",
+    "jest": "^22.4.3",
+    "lint-staged": "^7.0.4",
+    "plist": "^3.0.1",
+    "prettier": "1.12.1",
+    "ts-jest": "^22.4.4",
+    "ts-loader": "^4.2.0",
+    "tslint": "^5.9.1",
+    "tslint-config-prettier": "^1.12.0",
+    "typescript": "^2.8.3",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.15"
+  },
+  "jest": {
+    "roots": [
+      "src/"
+    ],
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "/__tests__/.*\\.ts$",
+    "coverageReporters": [
+      "lcov",
+      "text",
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!**/*.d.ts",
+      "!**/__tests__/*"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "globals": {
+      "ts-jest": {
+        "skipBabel": true
+      }
+    }
+  },
+  "prettier": {
+    "parser": "typescript",
+    "printWidth": 120,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "prettier --parser typescript --write",
+      "git add"
+    ]
   }
 }

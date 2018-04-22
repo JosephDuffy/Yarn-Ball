@@ -4,9 +4,8 @@
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/hnoheojfnfoadajfnopmabmpcgmlkmlg.svg)](https://chrome.google.com/webstore/detail/yarn-ball/hnoheojfnfoadajfnopmabmpcgmlkmlg)
 
 [![Build Status](https://travis-ci.org/JosephDuffy/Yarn-Ball.svg)](https://travis-ci.org/JosephDuffy/Yarn-Ball)
+[![Coverage Status](https://coveralls.io/repos/github/JosephDuffy/Yarn-Ball/badge.svg)](https://coveralls.io/github/JosephDuffy/Yarn-Ball)
 [![Greenkeeper badge](https://badges.greenkeeper.io/JosephDuffy/Yarn-Ball.svg)](https://greenkeeper.io/)
-[![David dependencies](https://david-dm.org/JosephDuffy/yarn-ball.svg)](https://david-dm.org/JosephDuffy/yarn-ball)
-[![Known Vulnerabilities](https://snyk.io/test/github/josephduffy/yarn-ball/badge.svg)](https://snyk.io/test/github/josephduffy/yarn-ball)
 
 Yarn Ball is a browser extension that replaces [`npm`](https://www.npmjs.com/) commands on webpages with their [`yarn`](https://yarnpkg.com) equivalents. It supports Chrome, Firefox, and Safari.
 
@@ -16,15 +15,15 @@ Yarn Ball will be available via the [Chrome Web Store](https://chrome.google.com
 
 ## Development
 
-To develop Yarn Ball locally run `npm start`, which will start a `webpack` watcher (note that changes to the `manifest.json` file will not be automatically recompiled). Compiled files are output to a `build` directory.
+To develop Yarn Ball locally run `npm run build:watch`, which will start a `webpack` watcher (note that changes to the `manifest.json` file will not be automatically recompiled). Compiled files are output to a `build` directory.
 
 ### Chrome
 
-To load in to Chrome use the "Load unpacked extension" option and choose the `build/chrome` directory.
+To load in to Chrome use the "Load unpacked extension" option and choose the `build/WebExtension` directory.
 
 ### Firefox
 
-To load in Firefox navigate to "about:debugging" and select "Load Temporary Add-on" and choose the `manifest.json` file inside the `build/chrome` directory.
+To load in Firefox navigate to "about:debugging" and select "Load Temporary Add-on" and choose the `manifest.json` file inside the `build/WebExtension` directory.
 
 ### Safari
 

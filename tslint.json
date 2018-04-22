@@ -1,0 +1,12 @@
+{
+    "extends": [
+        "tslint:recommended",
+        "tslint-config-prettier"
+    ],
+    "rules": {
+        "no-parameter-reassignment": true,
+        "interface-name": [true, "never-prefix"],
+        "object-literal-sort-keys": false,
+        "no-console": false
+    }
+}
