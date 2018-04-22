@@ -15,8 +15,9 @@ export default class Substituter {
     }
 
     validatePackageName(packageName) {
-        // TODO: Support "@josephduffy/yarn-ball@1.0.1" style packages
-        let packageNameWithoutVersion = packageName.split("@")[0];
+        let splitPackageName = packageName.split("@")
+        let packageNameWithoutVersion = splitPackageName[0] == '' ? '@'+splitPackageName[1] : splitPackageName[0];
+
         if (!isValidPackageName(packageNameWithoutVersion).validForOldPackages) {
             throw new Error(`${packageName} is not a valid package name`);
         }
