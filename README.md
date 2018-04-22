@@ -4,9 +4,8 @@
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/hnoheojfnfoadajfnopmabmpcgmlkmlg.svg)](https://chrome.google.com/webstore/detail/yarn-ball/hnoheojfnfoadajfnopmabmpcgmlkmlg)
 
 [![Build Status](https://travis-ci.org/JosephDuffy/Yarn-Ball.svg)](https://travis-ci.org/JosephDuffy/Yarn-Ball)
+[![Coverage Status](https://coveralls.io/repos/github/JosephDuffy/Yarn-Ball/badge.svg)](https://coveralls.io/github/JosephDuffy/Yarn-Ball)
 [![Greenkeeper badge](https://badges.greenkeeper.io/JosephDuffy/Yarn-Ball.svg)](https://greenkeeper.io/)
-[![David dependencies](https://david-dm.org/JosephDuffy/yarn-ball.svg)](https://david-dm.org/JosephDuffy/yarn-ball)
-[![Known Vulnerabilities](https://snyk.io/test/github/josephduffy/yarn-ball/badge.svg)](https://snyk.io/test/github/josephduffy/yarn-ball)
 
 Yarn Ball is a browser extension that replaces [`npm`](https://www.npmjs.com/) commands on webpages with their [`yarn`](https://yarnpkg.com) equivalents. It supports Chrome, Firefox, and Safari.
 
