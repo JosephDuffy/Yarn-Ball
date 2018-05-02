@@ -2,14 +2,14 @@
   "manifest_version": 2,
   "name": "Yarn Ball",
   "author": "Joseph Duffy",
-  "minimum_chrome_version": 47,
+  "minimum_chrome_version": "47",
   "icons": {
-    "32": "assets/icon-32.png",
-    "48": "assets/icon-48.png",
-    "64": "assets/icon-64.png",
-    "96": "assets/icon-96.png",
-    "128": "assets/icon-128.png",
-    "256": "assets/icon-256.png"
+    "32": "assets/Icon-32.png",
+    "48": "assets/Icon-48.png",
+    "64": "assets/Icon-64.png",
+    "96": "assets/Icon-96.png",
+    "128": "assets/Icon-128.png",
+    "256": "assets/Icon-256.png"
   },
   "content_scripts": [
     {

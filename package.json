@@ -21,13 +21,12 @@
     "xregexp": "^4.1.1"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.64",
     "@types/jest": "^22.2.3",
     "@types/xregexp": "^3.0.29",
-    "clean-webpack-plugin": "^0.1.19",
     "clone": "^1.0.4",
     "copy-webpack-plugin": "^4.5.1",
     "coveralls": "^3.0.0",
+    "extra-watch-webpack-plugin": "^1.0.1",
     "husky": "^0.14.3",
     "jest": "^22.4.3",
     "lint-staged": "^7.0.4",
@@ -72,13 +71,6 @@
         "skipBabel": true
       }
     }
-  },
-  "prettier": {
-    "parser": "typescript",
-    "printWidth": 120,
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "all"
   },
   "husky": {
     "hooks": {
