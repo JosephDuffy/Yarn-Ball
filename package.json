@@ -21,7 +21,7 @@
     "xregexp": "^4.1.1"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.64",
+    "@types/chrome": "^0.0.65",
     "@types/jest": "^22.2.3",
     "@types/xregexp": "^3.0.29",
     "clean-webpack-plugin": "^0.1.19",
