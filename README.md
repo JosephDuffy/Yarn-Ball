@@ -11,23 +11,27 @@ Yarn Ball is a browser extension that replaces [`npm`](https://www.npmjs.com/) c
 
 ## Installation
 
-Yarn Ball will be available via the [Chrome Web Store](https://chrome.google.com/webstore/detail/yarn-ball/hnoheojfnfoadajfnopmabmpcgmlkmlg), [Mozilla Addons](https://addons.mozilla.org/firefox/addon/yarn-ball), and the Safari Extensions Gallery. The README will be updated with links as they become available.
+Yarn Ball is available via the [Chrome Web Store](https://chrome.google.com/webstore/detail/yarn-ball/hnoheojfnfoadajfnopmabmpcgmlkmlg) and [AMO](https://addons.mozilla.org/firefox/addon/yarn-ball). In the future it may be submitted to the Safari Extensions Gallery.
 
 ## Development
 
-To develop Yarn Ball locally run `npm run build:watch`, which will start a `webpack` watcher (note that changes to the `manifest.json` file will not be automatically recompiled). Compiled files are output to a `build` directory.
+To run a one-off build run `npm run build`. Alternatively to rebuild when changes are detected run `npm run build:watch`.
 
-### Chrome
-
-To load in to Chrome use the "Load unpacked extension" option and choose the `build/WebExtension` directory.
+This utilises webpack to compile the TypeScript, generate the approriate `manifest.json` and `Info.plist` files, and copy across static assets.
 
 ### Firefox
 
-To load in Firefox navigate to "about:debugging" and select "Load Temporary Add-on" and choose the `manifest.json` file inside the `build/WebExtension` directory.
+[`web-ext`](https://developer.mozilla.org/Add-ons/WebExtensions/Getting_started_with_web-ext) is recommended when developing on Firefox. This tool will load Yarn Ball in to Firefox and reload it when changes are detected. This can be achieved by running `web-ext run` inside the `build/WebExtension` directory.
+
+Alternatively follow [Mozilla's guide to installing add-ons](https://developer.mozilla.org/Add-ons/WebExtensions/Temporary_Installation_in_Firefox).
+
+### Chrome
+
+Follow the instructions in [Google's getting started tutorial](https://developer.chrome.com/extensions/getstarted) and when prompted for the directory choose the `build/WebExtension` directory.
 
 ### Safari
 
-To load in Safari open the "Extension Builder" from the "Developer" menu and add the `build/Yarn Ball.safariextension` directory.
+To load in Safari navigate to "Developer" => "Show Extension Builder", click the "+" in the bottom-left, choose "Add Extension..." and select the `build/Yarn Ball.safariextension` directory.
 
 ## Feature Roadmap
 
@@ -40,8 +44,8 @@ Down the line I would like to add a configuration page that would provide the fo
 
 ## Special Thanks
 
-Special thanks to [Joshua Robins](https://joshuarobins3d.com/) for creating the logo for Yarn Ball.
+Special thanks to Joshua Robins for creating the logo for Yarn Ball.
 
 ## Licence
 
-Yarn Ball is released under the MIT licence. See the [LICENCE](LICENCE) file for the full licence text.
+Yarn Ball is released under the MIT licence. See the [LICENCE file](LICENCE) for the full licence text.

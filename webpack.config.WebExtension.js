@@ -10,6 +10,7 @@ const config = clone(baseConfig)
 
 config.output.path = path.join(config.output.path, "WebExtension")
 config.plugins.push(new GenerateManifestPlugin())
-config.plugins.push(new CopyWebpackPlugin([{ "from": "assets/*.png" }]))
+config.plugins.push(new CopyWebpackPlugin([{ "from": "src/assets/*.png" }]))
+config.plugins.push(new CopyWebpackPlugin([{ "from": "src/options.html" }]))
 
 module.exports = config

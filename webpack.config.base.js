@@ -2,12 +2,11 @@
 
 const path = require("path")
 const webpack = require('webpack')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin')
 
 module.exports = {
-  context: path.join(__dirname, "src"),
   entry: {
-    background: "./background.ts"
+    background: "./src/background.ts"
   },
   output: {
     path: path.join(__dirname, "build"),
@@ -33,6 +32,15 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['build'])
+    new ExtraWatchWebpackPlugin({
+      files: [
+        'src/Info.plist',
+        'src/manifest.json',
+        'package.json'
+      ],
+      dirs: [
+        'src/assets',
+      ],
+    }),
   ]
 }

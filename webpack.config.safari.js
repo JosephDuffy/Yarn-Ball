@@ -10,6 +10,6 @@ const config = clone(baseConfig)
 
 config.output.path = path.join(config.output.path, "Yarn Ball.safariextension")
 config.plugins.push(new GenerateSafariPlistPlugin())
-config.plugins.push(new CopyWebpackPlugin([{ "from": "assets/*.png" }]))
+config.plugins.push(new CopyWebpackPlugin([{ "from": "src/assets/*.png" }]))
 
 module.exports = config
