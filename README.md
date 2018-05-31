@@ -11,7 +11,7 @@ Yarn Ball is a browser extension that replaces [`npm`](https://www.npmjs.com/) c
 
 ## Installation
 
-Yarn Ball is via the [Chrome Web Store](https://chrome.google.com/webstore/detail/yarn-ball/hnoheojfnfoadajfnopmabmpcgmlkmlg), and [AMO](https://addons.mozilla.org/firefox/addon/yarn-ball). In the future it may be submitted to the Safari Extensions Gallery.
+Yarn Ball is available via the [Chrome Web Store](https://chrome.google.com/webstore/detail/yarn-ball/hnoheojfnfoadajfnopmabmpcgmlkmlg) and [AMO](https://addons.mozilla.org/firefox/addon/yarn-ball). In the future it may be submitted to the Safari Extensions Gallery.
 
 ## Development
 
@@ -21,7 +21,7 @@ This utilises webpack to compile the TypeScript, generate the approriate `manife
 
 ### Firefox
 
-[`web-ext`](https://developer.mozilla.org/Add-ons/WebExtensions/Getting_started_with_web-ext) is recommended when developing on Firefox. This tool will load Yarn Ball in to Firefox and reload it when changes are detected by running `web-ext run` inside the `build/WebExtension` directory.
+[`web-ext`](https://developer.mozilla.org/Add-ons/WebExtensions/Getting_started_with_web-ext) is recommended when developing on Firefox. This tool will load Yarn Ball in to Firefox and reload it when changes are detected. This can be achieved by running `web-ext run` inside the `build/WebExtension` directory.
 
 Alternatively follow [Mozilla's guide to installing add-ons](https://developer.mozilla.org/Add-ons/WebExtensions/Temporary_Installation_in_Firefox).
 
