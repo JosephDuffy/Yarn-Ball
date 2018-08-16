@@ -2,6 +2,7 @@
 
 [![Mozilla Add-on](https://img.shields.io/amo/v/yarn-ball.svg)](https://addons.mozilla.org/firefox/addon/yarn-ball/)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/hnoheojfnfoadajfnopmabmpcgmlkmlg.svg)](https://chrome.google.com/webstore/detail/yarn-ball/hnoheojfnfoadajfnopmabmpcgmlkmlg)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FJosephDuffy%2FYarn-Ball.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FJosephDuffy%2FYarn-Ball?ref=badge_shield)
 
 [![Build Status](https://travis-ci.org/JosephDuffy/Yarn-Ball.svg)](https://travis-ci.org/JosephDuffy/Yarn-Ball)
 [![Coverage Status](https://coveralls.io/repos/github/JosephDuffy/Yarn-Ball/badge.svg)](https://coveralls.io/github/JosephDuffy/Yarn-Ball)
@@ -49,3 +50,6 @@ Special thanks to Joshua Robins for creating the logo for Yarn Ball.
 ## Licence
 
 Yarn Ball is released under the MIT licence. See the [LICENCE file](LICENCE) for the full licence text.
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FJosephDuffy%2FYarn-Ball.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FJosephDuffy%2FYarn-Ball?ref=badge_large)
