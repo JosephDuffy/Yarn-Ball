@@ -1,5 +1,6 @@
 {
   "name": "yarn-ball",
+  "private": true,
   "version": "1.0.1",
   "description": "Replace npm commands on web pages with their yarn equivalent",
   "scripts": {
